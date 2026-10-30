@@ -1,0 +1,6 @@
+Pillow>=10.0.0
+
+# Optional: only needed for --format mp4/webm (or an -o path ending in .mp4/.webm).
+# imageio-ffmpeg bundles its own ffmpeg binary, so no separate ffmpeg install is needed.
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9

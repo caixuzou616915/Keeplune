@@ -1,0 +1,18 @@
+wait -time 3000
+python -b -f ../../app/variants/tviib_e4m_aravalli_s3p/debug/ghs/tvii_debug_4mbe.py VERIFY
+wait -time 2000
+alias m4 route cm4
+target gc
+wait -time 20000
+m4 halt
+wait -stop -time 5000
+m4 mprintf("HUD_TC01: === Read HUD / AmmSM state ===\n")
+m4 mprintf("HUD_TC01: AmmSM__enCurrentMode = %d\n", AmmSM__enCurrentMode)
+m4 mprintf("HUD_TC01: AmmSM__enReqMode     = %d\n", AmmSM__enReqMode)
+m4 mprintf("HUD_TC01: AmmSM__enReqProjMode = %d\n", AmmSM__enReqProjMode)
+m4 mprintf("HUD_TC01: AmmSM__enSysMode     = %d\n", AmmSM__enSysMode)
+m4 mprintf("HUD_TC01: legend 40=ProjectionOn(HUD ON) 20=Ready 10=Standby 0=ShutDown\n")
+m4 mprintf("HUD_TC01: === END ===\n")
+target gc
+wait -time 1000
+quit

@@ -1,0 +1,99 @@
+{
+  "meta": "AI Agent Catalogue",
+  "date": "October 2026",
+  "slides": [
+    {
+      "type": "title",
+      "title": "AI Agents for Embedded Software Development",
+      "subtitle": "Sample deck generated with the aumovio-pptx skill",
+      "org": "UX Software",
+      "notes": "Opening slide."
+    },
+    {
+      "type": "bullets",
+      "category": "Overview",
+      "title": "What the agent catalogue delivers",
+      "bullets": [
+        {"heading": "One install, many tools"},
+        {"para": "Agents and skills are installed with a single sync command and kept up to date per project branch."},
+        {"text": "Build and debug automation", "sub": ["Flash and debug via GHS Multi or TRACE32", "Headless Python control for CI-style runs"]},
+        {"text": "Test generation", "sub": ["GTest unit tests with coverage analysis", "Robot Framework integration tests"]},
+        "Traceability from requirements to test cases"
+      ],
+      "notes": "Keep to three minutes."
+    },
+    {
+      "type": "bullets",
+      "category": "Auto-fit demo",
+      "title": "A long list is continued on a second slide",
+      "bullets": [
+        "Klocwork warnings are exported per module and pre-triaged so reviewers only see findings that need a human decision",
+        "GTest skeletons follow the project template, keep requirement IDs in the test header and target full CTC coverage",
+        "Flash and debug runs produce a console log, a JSON record and an HTML report for every step",
+        "CANoe automation reads and writes signals, system variables and diagnostics without opening the GUI",
+        "Doxygen module specifications are generated or updated from the code, including PlantUML diagrams",
+        "Jira tickets are analysed against the code base and a fix proposal is prepared for review",
+        "Confluence pages can be read, updated or created, and turned into Jira tickets after approval",
+        "Release workflow verifies a clean install, writes the changelog and tags the version on main",
+        "PMS metric workbooks are audited and red metrics are linked to the functions that cause them",
+        "I2C traffic to monitor and touch MCUs can be scripted through the Aardvark adapter",
+        "Robot Framework suites for S3P SITS are generated from requirements with ASPICE-compliant documentation blocks",
+        "Requirement and test specification lookups run against the project knowledge base without leaving the editor",
+        "Variant headers and superset coverage are generated for modules with several build variants",
+        "Screen recordings can be captured and exported as a sped-up GIF or MP4 for bug reports",
+        "Commit orchestration validates staged changes across all repositories of a meta-repo before committing"
+      ]
+    },
+    {
+      "type": "section",
+      "number": "2",
+      "title": "Results",
+      "subtitle": "What changed for the teams"
+    },
+    {
+      "type": "cards",
+      "category": "Value",
+      "title": "Four areas with measurable impact",
+      "cards": [
+        {"heading": "Faster builds", "body": "Scripted build and flash flow replaces manual multi-step setup on the bench."},
+        {"heading": "Better tests", "body": "Generated test skeletons follow the project template and keep requirement traces."},
+        {"heading": "Fewer reviews", "body": "Static-analysis triage is pre-sorted so reviewers focus on real findings."},
+        {"heading": "Shared know-how", "body": "Skills capture bench knowledge once and make it available to every team, so new colleagues can run the same flows from day one without asking for a walkthrough."}
+      ]
+    },
+    {
+      "type": "table",
+      "category": "Catalogue",
+      "title": "Selected skills and their purpose",
+      "columns": ["Skill", "Area", "Status"],
+      "col_widths": [3, 6, 2],
+      "rows": [
+        ["gtest-testcase-gen", "Unit test implementation", "Released"],
+        ["gtest-run-fix", "Build, run and fix tests to full coverage", "Released"],
+        ["debug_traveo_ghs", "Flash and debug on target with GHS Multi", "Released"],
+        ["debug_traveo_lauterbach", "Flash and debug on target with TRACE32", "Released"],
+        ["klocwork", "Static analysis export, triage and migration", "Released"],
+        ["canoe-interface", "Signals, frames, diagnostics and NM in CANoe", "Released"],
+        ["plantuml-diagrams", "AUTOSAR-style diagrams for Doxygen", "Released"],
+        ["s3p-mts-traceability", "Function-level test traceability report", "Released"],
+        ["agent-release", "Changelog, install check and release tag", "Released"],
+        ["aumovio-pptx", "Branded presentations from a JSON spec", "New"]
+      ]
+    },
+    {
+      "type": "chart",
+      "category": "Adoption",
+      "title": "Skill usage per quarter (sample data)",
+      "chart": {
+        "type": "bar",
+        "categories": ["Q1", "Q2", "Q3", "Q4"],
+        "series": [{"name": "Sessions", "values": [40, 85, 130, 210]}]
+      },
+      "takeaway": "Usage roughly doubled each quarter after the one-click install was introduced."
+    },
+    {
+      "type": "closing",
+      "title": "Thank you"
+    }
+  ]
+}

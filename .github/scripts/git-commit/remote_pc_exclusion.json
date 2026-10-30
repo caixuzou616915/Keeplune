@@ -1,0 +1,20 @@
+{
+  "restricted_pcs": [
+    "IGD0067W",
+    "IGL7083W",
+    "IGL6538W",
+    "IGL6618W",
+    "IGL6444W",
+    "IGL7570W",
+    "IGL7417W",
+    "IGD0063W",
+    "IGL7473W"
+  ],
+  "restricted_users": [
+    "uie33480"
+  ],
+  "user_name_map": {
+    "uie33480": "John Doe"
+  }
+}
+

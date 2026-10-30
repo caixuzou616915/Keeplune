@@ -1,0 +1,18 @@
+{
+  "_comment": "Klocwork Toolkit settings. Leave any value empty (\"\"/[]) to use the script's built-in default. NEVER put an ltoken or password here - authentication always uses ~/.klocwork/ltoken, $KLOCWORK_LTOKEN, or the --ltoken/--user CLI flags. See SKILL.md for details.",
+  "_example": {
+    "_comment": "Example only - not used. Shows the expected shape/format of each setting.",
+    "url": "https://fr07719vmx.fr.de.int.automotive-wan.com:8096/Traveo-2/Aravalli_s3p_e4m",
+    "user": "uidc1098",
+    "ai_output_dir": "ai_output/klocwork",
+    "severity": "1-3",
+    "ruleset": ["MISRA C 2012", "CERT C Rules"],
+    "max_warnings_per_file": 1000
+  },
+  "url": "",
+  "user": "",
+  "ai_output_dir": "",
+  "severity": "1-3",
+  "ruleset": [],
+  "max_warnings_per_file": 1000
+}

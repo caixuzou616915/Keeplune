@@ -1,0 +1,34 @@
+{
+  "module": {
+    "name": "ExampleMod",
+    "description": "`ExampleMod` (short description, ASIL level if applicable) \u2014 [`examplemod1c1.c`](../pkg/path/to/examplemod1c1.c)",
+    "method": "White-box, on-target (GHS Multi debugger) \u2014 breakpoints on internal functions + direct read/override of internal RAM variables."
+  },
+  "test_cases": [
+    {
+      "id": "UC-01",
+      "title": "OK case: <short title>",
+      "status": "\u2705 PASS",
+      "description": "One prose paragraph describing what behavior this use case confirms and why it matters.",
+      "traceability": "Functions `ExampleMod__vDoThing` (examplemod1c1.c) \u2014 Diagram `ExampleMod_MainFlow.puml`",
+      "scripts": "`build/<variant>/UC01.rc` (`run_UC01.sh`)",
+      "steps": [
+        {
+          "step": 1,
+          "what": "Arm breakpoints",
+          "how": "Halting breakpoint on `ExampleMod_vMainFunction`",
+          "expectation": "Breakpoints set without error",
+          "result": "\u2705 Both armed"
+        },
+        {
+          "step": 2,
+          "what": "Inject test condition",
+          "how": "`m4 print ((\"examplemod1c1.c\"#ExampleMod__u16Value) = 42)`",
+          "expectation": "Write succeeds",
+          "result": null
+        }
+      ],
+      "summary": "Not yet executed."
+    }
+  ]
+}

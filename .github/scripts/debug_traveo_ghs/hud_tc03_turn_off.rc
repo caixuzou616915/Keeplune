@@ -1,0 +1,19 @@
+wait -time 3000
+python -b -f ../../app/variants/tviib_e4m_aravalli_s3p/debug/ghs/tvii_debug_4mbe.py VERIFY
+wait -time 2000
+alias m4 route cm4
+m4 mprintf("HUD_TC03: === Forcing HUD OFF (Ready=20) each cycle ===\n")
+m4 hardbrk rolling AmmSM_vMainFunction { AmmSM__enReqMode = 20; AmmSM__enReqProjMode = 20 }
+target gc
+wait -time 30000
+m4 halt
+wait -stop -time 5000
+m4 mprintf("HUD_TC03: AmmSM__enCurrentMode = %d\n", AmmSM__enCurrentMode)
+m4 mprintf("HUD_TC03: AmmSM__enReqMode     = %d\n", AmmSM__enReqMode)
+m4 mprintf("HUD_TC03: AmmSM__enReqProjMode = %d\n", AmmSM__enReqProjMode)
+m4 mprintf("HUD_TC03: AmmSM__enSysMode     = %d\n", AmmSM__enSysMode)
+m4 mprintf("HUD_TC03: expect AmmSM__enCurrentMode != 40 (HUD not projecting)\n")
+m4 mprintf("HUD_TC03: === END ===\n")
+target gc
+wait -time 1000
+quit

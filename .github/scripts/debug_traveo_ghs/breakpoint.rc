@@ -1,0 +1,10 @@
+; RC template — Hardware breakpoint + print + continue (tviic_6m_endprod bench, m7_0 core)
+; Replace MY_FUNCTION and MY_VARIABLE
+; hardbrk rolling: fires on each call, action block runs, go resumes
+wait -time 3000
+python -b -f ../../app/variants/tviic_6m_endprod/debug/tvii_debug_6mb.py VERIFY
+wait -time 90000
+m7_0 hardbrk rolling MY_FUNCTION { mprintf("=== BP: MY_FUNCTION ===\n"); mprintf("MY_VARIABLE = %d (0x%X)\n", MY_VARIABLE, MY_VARIABLE); go }
+target gc
+wait -time 30000
+quit

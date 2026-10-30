@@ -1,0 +1,12 @@
+; RC template — Write variable at Startup_Init halt
+; Replace MY_VARIABLE and NEW_VALUE
+; GRTL write syntax: m7_0 VAR = VALUE  (NOT "m7_0 set VAR = VALUE")
+wait -time 3000
+python -b -f ../../app/variants/tviic_6m_endprod/debug/tvii_debug_6mb.py VERIFY
+wait -time 90000
+m7_0 mprintf("Before: MY_VARIABLE = %d\n", MY_VARIABLE)
+m7_0 MY_VARIABLE = NEW_VALUE
+m7_0 mprintf("After:  MY_VARIABLE = %d\n", MY_VARIABLE)
+target gc
+wait -time 1000
+quit

@@ -1,0 +1,11 @@
+; RC template — Read NOINIT variable at Startup_Init halt
+; Replace MY_VARIABLE with actual symbol name
+; After VERIFY, switch -component is permanently stuck in cm0plus.
+; Use m7_0 prefix to route all commands to the app core.
+wait -time 3000
+python -b -f ../../app/variants/tviic_6m_endprod/debug/tvii_debug_6mb.py VERIFY
+wait -time 90000
+m7_0 mprintf("MY_VARIABLE = %d (0x%X)\n", MY_VARIABLE, MY_VARIABLE)
+target gc
+wait -time 1000
+quit

@@ -1,0 +1,91 @@
+{
+  "dtc_version": "1.0",
+  "suite": {
+    "id": "DTC-AmmSM-HUDON",
+    "title": "HUD ON/OFF request handling after the AmmSM change",
+    "change_ref": "DGC-0000 (example) - Code Deploy Report: AmmSM_vMainFunction request arbitration",
+    "module": "AmmSM",
+    "variant": "tviib_e4m_aravalli_s3p",
+    "build_type": "Debug",
+    "changed_files": ["pkg/em_s3p_hud/ammsm/src/ammsm1c1.c"],
+    "preconditions": [
+      "CANoe running with KL15 ON",
+      "Variant built AFTER the change and flashed (deploy-check OK)"
+    ]
+  },
+  "bench": {
+    "preset": "A"
+  },
+  "symbols": {
+    "AmmSM__enCurrentMode": {
+      "file": "ammsm1c1.c",
+      "ghs": "AmmSM__enCurrentMode",
+      "t32": "AmmSM__enCurrentMode",
+      "enum": {"ShutDown": 0, "Standby": 10, "Ready": 20, "ProjectionOn": 40, "PowerFail": 50, "DirectControl": 60}
+    },
+    "AmmSM__enReqMode": {
+      "file": "ammsm1c1.c",
+      "ghs": "AmmSM__enReqMode",
+      "t32": "AmmSM__enReqMode",
+      "enum": {"Ready": 20, "ProjectionOn": 40}
+    },
+    "AmmSM__enReqProjMode": {
+      "file": "ammsm1c1.c",
+      "ghs": "AmmSM__enReqProjMode",
+      "t32": "AmmSM__enReqProjMode",
+      "enum": {"Ready": 20, "ProjectionOn": 40}
+    }
+  },
+  "deploy_check": {
+    "symbols": ["AmmSM_vMainFunction"]
+  },
+  "test_cases": [
+    {
+      "id": "DTC-01",
+      "title": "Changed function is executed on target",
+      "type": "deployment",
+      "technique": "Error Guessing",
+      "trace": ["ammsm1c1.c:AmmSM_vMainFunction"],
+      "purpose": "Proves the flashed image contains and executes the changed AmmSM_vMainFunction before any behaviour is judged.",
+      "steps": [
+        {"action": "break", "function": "AmmSM_vMainFunction", "mode": "halt", "expect": {"op": "hit"}},
+        {"action": "run"},
+        {"action": "wait_halt", "timeout_ms": 2000},
+        {"action": "read", "symbol": "AmmSM__enCurrentMode", "what": "Record the current mode (baseline)"}
+      ]
+    },
+    {
+      "id": "DTC-02",
+      "title": "HUD ON request reaches ProjectionOn",
+      "type": "functional",
+      "technique": "State Transition",
+      "trace": ["SRS-xxxx (example)", "ammsm1c1.c:AmmSM_vMainFunction"],
+      "purpose": "Forces a ProjectionOn request every cycle and confirms the state machine settles in ProjectionOn (40).",
+      "steps": [
+        {"action": "break", "function": "AmmSM_vMainFunction", "mode": "force",
+         "set": {"AmmSM__enReqMode": "ProjectionOn", "AmmSM__enReqProjMode": "ProjectionOn"},
+         "expect": {"op": "count", "min": 1}},
+        {"action": "run"},
+        {"action": "wait", "ms": 30000},
+        {"action": "halt"},
+        {"action": "read", "symbol": "AmmSM__enCurrentMode", "expect": {"op": "==", "value": "ProjectionOn"}}
+      ]
+    },
+    {
+      "id": "DTC-03",
+      "title": "HUD OFF request leaves ProjectionOn",
+      "type": "negative",
+      "technique": "State Transition",
+      "trace": ["SRS-xxxx (example)", "ammsm1c1.c:AmmSM_vMainFunction"],
+      "purpose": "Forces a Ready request every cycle and confirms the state machine is NOT in ProjectionOn afterwards.",
+      "steps": [
+        {"action": "break", "function": "AmmSM_vMainFunction", "mode": "force",
+         "set": {"AmmSM__enReqMode": "Ready", "AmmSM__enReqProjMode": "Ready"}},
+        {"action": "run"},
+        {"action": "wait", "ms": 30000},
+        {"action": "halt"},
+        {"action": "read", "symbol": "AmmSM__enCurrentMode", "expect": {"op": "!=", "value": "ProjectionOn"}}
+      ]
+    }
+  ]
+}
